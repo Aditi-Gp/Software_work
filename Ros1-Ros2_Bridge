@@ -1,0 +1,22 @@
+Docker Pull Image
+https://hub.docker.com/repository/docker/manasatai69/ubuntu2204_ros2_ros1/general
+
+Create a container
+docker run -it --privileged \
+    --network=host \
+    -v /dev:/dev \
+    -e DISPLAY=$DISPLAY \
+    -v $HOME/.Xauthority:/root/.Xauthority:ro \
+    --name noetic-shunya  \
+    --ipc=host \
+    osrf/ros:noetic-desktop /ros_entrypoint.sh bas
+
+in Terminal one  
+source /ros_noetic_on_jammy/install_isolated/setup.bash
+roscore
+
+in Terminal two 
+source /ros_noetic_on_jammy/install_isolated/setup.bash
+source /opt/ros/humble/setup.bash
+source /ros1_bridge/install/local_setup.bash
+ros2 run ros1_bridge dynamic_bridge
